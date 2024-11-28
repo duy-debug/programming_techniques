@@ -1,4 +1,0 @@
-B1:Viết chương trình liệt kê tất cả các tập con có k phần tử từ tập {1, 2, ..., n}.
-B2:Liệt kê tất cả các hoán vị của dãy {1, 2, ..., n}
-B3:Cho một tập số nguyên dương và một số S, liệt kê tất cả các dãy con có tổng bằng S.
-B4:Cho một mảng các số nguyên, kiểm tra xem có thể chia mảng thành 2 tập con có tổng bằng nhau hay không.

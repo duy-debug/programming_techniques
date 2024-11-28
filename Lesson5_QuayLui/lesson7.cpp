@@ -28,6 +28,34 @@ void try1(int i){
 			Print();
 	}
 }
+/*
+cach 2:
+#include <stdio.h>
+int n, x[100], k;
+void Print(){
+	for(int i=1; i<=k; i++){
+		printf("%d", x[i]);
+	}
+	printf("\n");
+}
+void try1(int i){
+	for(int j=x[i-1]+1; j<=n-k+i; j++){
+		x[i]=j;
+		if(i==k)
+			Print();
+		else 
+			try1(i+1);
+	}
+}
+int main(){
+	printf("Nhap n: ");
+	scanf("%d", &n);
+	printf("Nhap k: ");
+	scanf("%d", &k);
+	x[0]=0;
+	try1(1);
+}
+*/
 int main(){
 	try1(0);
 }

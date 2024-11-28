@@ -1,4 +1,4 @@
-// Cho day so nguyen gom n phan tu. Hay tim tat ca cac tap con cua n phan tu sao cho tong tap con bang 5
+// Cho day so nguyen gom n phan tu. Hay tim tat ca cac tap con cua n phan tu sao cho tong tap con bang 15
 #include <stdio.h>
 int b[100];
 int a[]={5,7,0,1,3,2,8,9};
@@ -30,6 +30,6 @@ void Try(int i){
     }
 }
 int main(){
-    int i=1;
+    int i=0;
     Try(i);
 }

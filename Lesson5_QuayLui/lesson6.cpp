@@ -1,21 +1,23 @@
 #include <stdio.h>
-int n=3;
-int a[1000];
-void Print(){
+void Print(int x[], int n){
 	for(int i=0; i<n; i++){
-		printf("%d ", a[i]);
+		printf("%d ", x[i]);
 	}
 	printf("\n");
 }
-void try1(int i){
+void try1(int i, int x[], int n){
 	for(int j=0; j<=1; j++){
-		a[i]=j;
-		if(i<n-1)
-			try1(i+1);
-		else
-			Print();
+		x[i]=j;
+		if(i==n-1)
+			Print(x,n);
+		else 
+			try1(i+1,x,n);
 	}
 }
 int main(){
-	try1(0);
+	int n, x[100];;
+	printf("Nhap n: ");
+	scanf("%d", &n);
+	try1(0,x,n);
+	
 }

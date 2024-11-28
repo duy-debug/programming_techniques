@@ -1,6 +1,6 @@
 //Liet ke tat ca cac hoan vi cua day {1,2,3...n}
 #include <stdio.h>
-int n=3;
+int n;
 int a[1000];
 int check[1000]={0};
 void Print(){
@@ -12,7 +12,7 @@ void Print(){
 void try1(int i){
 	for(int j=0; j<n; j++){
 		if(!check[j]){
-			a[i]=j;
+			a[i]=j; 
 			check[j] = 1;
 		if(i==n-1)
 			Print();
@@ -23,5 +23,7 @@ void try1(int i){
 	}
 }
 int main(){
+	printf("NhaP N: ");
+	scanf("%d", &n);
 	try1(0);
 }

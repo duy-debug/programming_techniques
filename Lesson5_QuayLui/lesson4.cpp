@@ -21,6 +21,5 @@ void Try(int i){
 int main(){
     printf("Nhap do dai chuoi nhi phan: ");
     scanf("%d", &n);
-    int i=1;
-    Try(i);
+    Try(1);
 }
