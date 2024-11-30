@@ -7,7 +7,7 @@ int Tim_max(int a[], int l, int r){
 	int right_max=Tim_max(a,mid+1,r);
 	return left_max>right_max?left_max:right_max;
 }
-// dem va xuat ra so luan xuat hien cua phan tu co gia tri x trong mang
+// dem va xuat ra so lan xuat hien cua phan tu co gia tri x trong mang
 int Demx(int a[], int l, int r, int x){
 	if(l>r) return 0;
 	int mid=(l+r)/2;
@@ -35,6 +35,17 @@ int PhanTu_NhieuNhat(int a[], int l, int r){
 	int right_count=cnt(a,l,r,right);
 	return (left_count>right_count)?left:right;
 }
+void sort1(int a[], int n){
+	for(int i=0; i<n-1; i++){
+		for(int j=i+1; j<n; j++){
+			if(a[i]>a[j]){
+				int tem=a[i];
+				a[i]=a[j];
+				a[j]=tem;
+			}
+		}
+	}
+}
 int main(){
 	int n;
 	printf("Nhap n: ");
@@ -42,6 +53,7 @@ int main(){
 	int a[n];
 	for(int i=0; i<n; i++)
 		scanf("%d", &a[i]);
+	sort1(a,n);
 	printf("Phan tu lon nhat: %d\n", Tim_max(a,0,n-1));
 	int x;
 	printf("Nhap x: ");

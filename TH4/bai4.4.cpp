@@ -11,7 +11,7 @@ int KT_mang(int a[], int l, int r){
 }
 // tim va xuat ra vi tri phan tu nho nhat trong mang
 int timvitri_nhonhat(int a[], int l, int r){
-	if(l==r) return 	l;
+	if(l==r) return l;
 	int mid=(l+r)/2;
 	int check_left=timvitri_nhonhat(a,l,mid);
 	int check_right=timvitri_nhonhat(a,mid+1,r);
@@ -23,7 +23,7 @@ int Demboi_x(int a[], int l, int r, int x){
 	int mid=(l+r)/2;
 	int	count_left=Demboi_x(a,l,mid,x);
 	int count_right=Demboi_x(a,mid+1,r,x);
-	return count_left+count_right;	
+	return count_left+count_right;
 }
 int main(){
 	int n;

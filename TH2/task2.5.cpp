@@ -1,6 +1,5 @@
 #include<stdio.h>
 #include<stdlib.h>
-
 struct HocPhan{
 	char ma[255], ten[255];
 	int sotc;
