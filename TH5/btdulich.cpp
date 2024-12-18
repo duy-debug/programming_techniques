@@ -1,4 +1,4 @@
-#include <stdio.h>
+	#include <stdio.h>
 #define MAX 30
 int n;
 int maxc=10000;
@@ -7,7 +7,7 @@ int x[MAX]; // nghiem dang xet
 int chuaxet[MAX]; // nghiem dang xet
 int sum=0; // chi phi hanh trinh tot nhat
 void readfile(){
-	FILE *f=fopen("dulich", "r");
+	FILE *f=fopen("dulich.txt", "r");
 	if(f!=NULL){
 		fscanf(f,"%d\n",&n);
 		for(int i=0; i<n; i++){

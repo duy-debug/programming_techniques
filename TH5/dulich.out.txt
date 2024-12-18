@@ -1,0 +1,2 @@
+TP1-> TP0-> TP0-> TP0-> TP1
+Tong chi phi la: 20
