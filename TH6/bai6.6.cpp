@@ -16,18 +16,21 @@ void readfile(char *s){
 	}
 }
 void Print(FILE*f){
-	int trung=0, trat=0;
+	int trung=0, trat=0, flag=1;
 	for(int i=0; i<n; i++){
 		if(a[i]==0){
 			trat++;
-			if(trat>=m) return;
+			if(trat==m || m==0){
+				flag=0;
+				break;
+			}
 		}
 		else{
 			trung++;
 			trat=0;
 		}
 	}
-	if(trung>=k){
+	if(trung>=k && flag==1){
 		cnt++;
 		for(int i=0; i<n; i++){
 			if(a[i]==1)

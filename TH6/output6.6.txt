@@ -1,1 +1,13 @@
--1
+_x_x_
+_x_xx
+_xx_x
+_xxx_
+_xxxx
+x_x_x
+x_xx_
+x_xxx
+xx_x_
+xx_xx
+xxx_x
+xxxx_
+xxxxx
