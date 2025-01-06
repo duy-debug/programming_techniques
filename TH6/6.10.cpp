@@ -26,8 +26,9 @@ void sort(int a[], int n){
 		}
 	}
 }
-void greedy(int a[], int n, int m, FILE*f){
-	int cnt=0, i=0;
+int cnt=0;
+void greedy(int a[], int n, int m){
+	int i=0;
 	while(i<n && m>0){
 		if(a[i]<=m){
 			m-=a[i];
@@ -35,12 +36,16 @@ void greedy(int a[], int n, int m, FILE*f){
 		}
 		i++;
 	}
-	if(m==0){
+}
+void writefile(int a[], int n, int m, FILE*f){
+	if(m!=0)
+		fprintf(f,"Khong chon duoc");
+	else{
+		fprintf(f,"%d\n",cnt);
 		for(int i=0; i<cnt; i++){
-			fprintf(f,"%d ", kq[i]);
+			fprintf(f,"%d ",kq[i]);
 		}
 	}
-	else fprintf(f,"Khong chon duoc");
 }
 int main(){
 	int a[100], n, m;
@@ -48,6 +53,8 @@ int main(){
 	FILE *f=fopen("output6.10.txt", "w");
 	readfile(s,a,n,m);
 	sort(a,n);
-	greedy(a,n,m,f);
+	greedy(a,n,m);
+	writefile(a,n,m,f);
 	fclose(f);
+
 }

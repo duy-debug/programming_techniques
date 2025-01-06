@@ -2,6 +2,7 @@
 #include <stdlib.h>
 int a[100],n, m;
 int b[100], cnt=0;
+int kq[100][100], k, size[100];
 void readfile(char *s){
 	FILE *f=fopen(s,"r");
 	if(f==NULL){
@@ -16,8 +17,8 @@ void readfile(char *s){
 		fclose(f);
 	}
 }
-void Print(FILE*f){
-	int sum=0;
+void Print(){
+	int sum=0, k=0;
 	for(int i=0; i<n; i++){
 		if(b[i]==0)
 			sum+=a[i];
@@ -26,26 +27,35 @@ void Print(FILE*f){
 		cnt++;
 		for(int i=0; i<n; i++){
 			if(b[i]==0)
-				fprintf(f,"%d ", a[i]);
+				kq[cnt][k++]=a[i];
 		}
-		fprintf(f,"\n");
+		size[cnt]=k;
 	}
 }
-void try1(int i,FILE*f){
+void try1(int i){
 	for(int j=0; j<=1; j++){
 		b[i]=j;
 		if(i<n-1)
-			try1(i+1,f);
-		else Print(f);	
+			try1(i+1);
+		else Print();	
+	}
+}
+void writefile(FILE*f){
+	fprintf(f,"%d\n", cnt);
+	for(int i=1; i<=cnt; i++){
+		for(int j=0; j<size[i]; j++)
+			fprintf(f,"%d ", kq[i][j]);
+		fprintf(f,"\n");
 	}
 }
 int main(){
 	char *s="input6.7.txt";
-	FILE *f=fopen("output6.7.txt", "w");
 	readfile(s);
-	try1(0,f);
+	try1(0);
+	FILE *f=fopen("output6.7.txt","w");	
 	if(cnt==0)
 		fprintf(f,"Khong duoc chon");
-	else fprintf(f,"%d", cnt);
+	else 
+		writefile(f);
 	fclose(f);
 }

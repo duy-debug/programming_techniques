@@ -2,6 +2,7 @@
 #include <stdlib.h>
 int n, m, k;
 int a[100];
+int kq[100][100];
 int cnt=0;
 void readfile(char *s){
 	FILE *f=fopen(s,"r");
@@ -15,7 +16,7 @@ void readfile(char *s){
 		fclose(f);
 	}
 }
-void Print(FILE*f){
+void In(){
 	int trung=0, trat=0, flag=1;
 	for(int i=0; i<n; i++){
 		if(a[i]==0){
@@ -34,30 +35,37 @@ void Print(FILE*f){
 		cnt++;
 		for(int i=0; i<n; i++){
 			if(a[i]==1)
-				fprintf(f,"x");
-			else fprintf(f,"_");
+				kq[cnt][i]='x';
+			else 
+				kq[cnt][i]='_';
 		}
-		fprintf(f,"\n");
 	}
 }
-void thu(int i, FILE*f){
+void thu(int i){
 	for(int j=0; j<=1; j++){
 		a[i]=j;
 		if(i<n-1)
-			thu(i+1,f);
+			thu(i+1);
 		else
-			Print(f);
+			In();
+	}
+}
+void writefile(FILE*f){
+	fprintf(f,"%d\n", cnt);
+	for(int i=1; i<=cnt; i++){
+		for(int j=0; j<n; j++)
+			fprintf(f,"%c", kq[i][j]);
+		fprintf(f,"\n");
 	}
 }
 int main(){
 	char *s="input6.6.txt";
 	readfile(s);
 	FILE *f=fopen("output6.6.txt","w");
-	if(f==NULL){
-		printf("Khong the mo file");
-	}
-	thu(0,f);
+	thu(0);
 	if(cnt==0)
 		fprintf(f,"-1");
+	else
+		writefile(f);
 	fclose(f);
 }

@@ -3,7 +3,7 @@
 int a[100];
 int b[100];
 int n;
-int cnt=0;
+int cnt=0, kq[100][100];
 void readfile(char *s){
 	FILE *f=fopen(s,"r");
 	if(f==NULL){
@@ -17,7 +17,7 @@ void readfile(char *s){
 		fclose(f);
 	}
 }
-void Print(FILE*f){
+void Print(){
 	int tonga=0;
 	int tongb=0;
 	for(int i=0; i<n; i++){
@@ -30,19 +30,28 @@ void Print(FILE*f){
 		cnt++;
 		for(int i=0; i<n; i++){
 			if(a[i]==0)
-				fprintf(f,"A ");
-			else fprintf(f,"B ");
+				kq[cnt][i]='A';
+			else 
+				kq[cnt][i]='B';
 		}
-		fprintf(f,"\n");
 	}
 }
-void thu(int i,FILE*f){
+void thu(int i){
 	for(int j=0; j<=1; j++){
 		a[i]=j;
 		if(i<n-1)
-			thu(i+1,f);
+			thu(i+1);
 		else 
-			Print(f);
+			Print();
+	}
+}
+void writefile(FILE *f){
+	fprintf(f,"%d\n",cnt);
+	for(int i=1; i<=cnt; i++){
+		for(int j=0; j<n; j++){
+			fprintf(f,"%c",kq[i][j]);
+		}
+		fprintf(f,"\n");
 	}
 }
 int main(){
@@ -52,8 +61,10 @@ int main(){
 	if(f==NULL){
 		printf("Khong the mo file");
 	}
-	thu(0,f);
+	thu(0);
 	if(cnt==0)
-		fprintf(f,"Khong duoc chon");
+		fprintf(f,"Khong chia duoc");
+	else
+		writefile(f);
 	fclose(f);
 }
