@@ -1,60 +1,56 @@
 #include <stdio.h>
 #include <stdbool.h>
 #define MAX 100
-// Ham tim day con co tong bang S
-bool subset_sum(int a[], int n, int S) {
-    bool dp[n+1][S+1]; // Bang quy hoach dong
-    // Khoi tao
-    for (int i=0; i<=n; i++) {
-        dp[i][0] = true; // Tong = 0 luon co the thuc hien (bo chon tat ca phan tu)
-    }
-    for (int j=1; j<=S; j++) {
-        dp[0][j] = false; // Khong co phan tu nao thi khong the dat tong > 0
-    }
-    // Dien bang dp
-    for (int i=1; i<=n; i++) {
-        for (int j=1; j<=S; j++) {
-            if (a[i-1]<=j) {
-                // Neu phan tu a[i-1] co the duoc chon
-                dp[i][j] = dp[i-1][j] || dp[i-1][j-a[i-1]];
-            } else {
-                // Neu khong the chon phan tu a[i-1]
-                dp[i][j] = dp[i-1][j];
-            }
+int n, S;
+int A[MAX];
+bool L[MAX][MAX];
+int Trace[MAX];   
+void Init(){
+    printf("Nhap so phan tu n: ");
+    scanf("%d", &n);
+    printf("Nhap tong S: ");
+    scanf("%d", &S);
+    printf("Nhap cac phan tu cua day: ");
+    for (int i = 1; i <= n; i++)
+        scanf("%d", &A[i]);
+    for (int i = 0; i <= n; i++)
+        L[i][0] = true; 
+    for (int j = 1; j <= S; j++)
+        L[0][j] = false;
+}
+void Dynamic(){
+    for (int i = 1; i <= n; i++){
+        for (int j = 1; j <= S; j++){
+            if (j < A[i])
+                L[i][j] = L[i - 1][j];
+            else 
+                L[i][j] = L[i - 1][j] || L[i - 1][j - A[i]];
         }
-    }
-    // Neu co giai phap, truy vet de in day con
-    if (dp[n][S]){
-        printf("Day con co tong bang %d la: ", S);
-        int i=n, j=S;
-        while (j>0 && i>0) {
-            if (dp[i][j]!=dp[i-1][j]){
-                printf("%d ", a[i-1]); // In phan tu duoc chon
-                j-=a[i-1];
-            }
-            i--;
-        }
-        printf("\n");
-        return true;
-    } else {
-        printf("Khong co day con nao co tong bang %d\n", S);
-        return false;
     }
 }
-int main(){
-    int n, S;
-    int a[MAX];
-    // Nhap du lieu
-    printf("Nhap so luong phan tu: ");
-    scanf("%d", &n);
-    printf("Nhap cac phan tu cua day:\n");
-    for (int i = 0; i < n; i++) {
-        scanf("%d", &a[i]);
+void TraceBack(){
+    if (!L[n][S]){
+        printf("Khong co day con co tong bang S!\n");
+        return;
     }
-    printf("Nhap tong S can tim: ");
-    scanf("%d", &S);
-    // Goi ham tinh toan
-    subset_sum(a, n, S);
+    int count = 0;
+    int i = n, j = S;
+    while (j > 0 && i > 0){
+        if (L[i][j] && !L[i - 1][j]){
+            Trace[count++] = A[i]; 
+            j -= A[i]; 
+        }
+        i--;
+    }
+    printf("Day con co tong bang S: ");
+    for (int k = count - 1; k >= 0; k--) 
+        printf("%d ", Trace[k]);
+    printf("\n");
+}
+int main(){
+    Init();
+    Dynamic();
+    TraceBack();
     return 0;
 }
 
